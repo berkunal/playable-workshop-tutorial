@@ -15,13 +15,14 @@ script = ExtResource("1_3vyb7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_20vo2")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="."]
+[node name="CameraRig" type="SpringArm3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36594, 0)
+top_level = true
 shape = SubResource("SphereShape3D_qhqgy")
 spring_length = 0.5
 script = ExtResource("2_qhqgy")
 
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+[node name="Camera3D" type="Camera3D" parent="CameraRig"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.24978)
 
 [node name="Mesh" parent="." instance=ExtResource("2_g2els")]
