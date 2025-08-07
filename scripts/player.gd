@@ -1,11 +1,19 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @onready var camera := $CameraRig/Camera3D
 
+func _ready() -> void:
+	if not is_multiplayer_authority():
+		return
+	
+	camera.current = true
+
 func _physics_process(delta: float) -> void:
+	if not is_multiplayer_authority():
+		return
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -34,3 +42,6 @@ func turn_to(direction: Vector3) -> void:
 		var yaw := atan2(-direction.x, -direction.z)
 		yaw = lerp_angle(rotation.y, yaw, 0.25)
 		rotation.y = yaw
+
+func _enter_tree() -> void:
+	set_multiplayer_authority(str(name).to_int())
